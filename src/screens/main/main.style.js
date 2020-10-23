@@ -5,6 +5,21 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'indigo',
+  },
+  heading: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
+    marginBottom: 20,
+  },
+  payBtn: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '40%',
+    borderRadius: 5,
   },
 });
 
