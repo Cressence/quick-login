@@ -33,7 +33,7 @@ This tutorial is for beginners and you will need to have some knowledge on the f
 We will be working with:
 * Node v10.22.1
 * npm v6.14.6
-* React-Native v
+* React-Native v0.63.3
 
 
 
@@ -87,7 +87,7 @@ You can follow the steps found in the official React-Native documentation (https
 #### Project setup
 To create a new React-Native project run 
 ```
-npx react-native init PROJECTNAME --version X.XX.X
+npx react-native init PROJECTNAME --version 0.63.3
 ```
 
 If you have that version installed locally, run 
@@ -100,6 +100,6 @@ After project creation is successfull, run
 
 cd PROJECTNAME
 
-react-native start
+run-android/react-native run-ios
 ```
 
