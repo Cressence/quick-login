@@ -18,7 +18,7 @@ const Main = ({navigation}) => {
       <TouchableOpacity
         style={styles.payBtn}
         onPress={() => navigation.navigate('Scanner')}>
-        <Text>PAY</Text>
+        <Text>Pay With MTN Mobile Money</Text>
       </TouchableOpacity>
     </View>
   );
