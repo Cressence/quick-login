@@ -18,20 +18,25 @@ const Scanner = ({navigation}) => {
     <QRCodeScanner
       onRead={onSuccess}
       showMarker={true}
-      fadeIn={true}
+      fadeIn={false}
       flashMode={RNCamera.Constants.FlashMode.auto}
       containerStyle={styles.container}
+      cameraStyle={styles.camera}
       topContent={
-        <Text style={styles.centerText}>
-          Scan the code in order to process payment through MTN mobile money
-        </Text>
+        <View style={styles.topContainer}>
+          <Text style={styles.centerText}>
+            Scan the code in order to process payment through MTN mobile money
+          </Text>
+        </View>
       }
       bottomContent={
-        <TouchableOpacity
-          style={styles.buttonTouchable}
-          onPress={() => navigation.navigate('Main')}>
-          <Text style={styles.buttonText}>Scan Again</Text>
-        </TouchableOpacity>
+        <View style={styles.bottomContainer}>
+          <TouchableOpacity
+            style={styles.buttonTouchable}
+            onPress={() => navigation.navigate('Main')}>
+            <Text style={styles.buttonText}>Scan Again</Text>
+          </TouchableOpacity>
+        </View>
       }
     />
   );

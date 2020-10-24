@@ -21,10 +21,19 @@ const styles = StyleSheet.create({
   buttonTouchable: {
     backgroundColor: 'indigo',
     paddingVertical: 10,
+    paddingHorizontal: 25,
     justifyContent: 'center',
     alignItems: 'center',
     width: '40%',
     borderRadius: 5,
+    marginTop: 30,
+  },
+  camera: {
+    height: 200,
+    marginTop: 20,
+    width: 280,
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
 });
 
