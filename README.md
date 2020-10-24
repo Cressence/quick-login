@@ -103,3 +103,12 @@ cd PROJECTNAME
 run-android/react-native run-ios
 ```
 
+** NB (For Android):** Add a **local.properties** in ```android``` folder with the followig line of code
+```
+sdk.dir=/path to android sdk/Android/sdk
+```
+In order to get the path, you can open your android studio, go to SDK manager and under System Settings, click Android SDK and copy the path.
+
+[Insert Image here]
+
+
