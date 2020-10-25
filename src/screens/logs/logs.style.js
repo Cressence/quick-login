@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: 'white',
-    marginBottom: 15,
+    marginBottom: 20,
   },
   payBtn: {
     backgroundColor: 'white',
@@ -25,9 +25,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
-    marginBootom: 25,
-    width: '65%',
-    color: 'white',
+    marginVertical: 10,
   },
 });
 

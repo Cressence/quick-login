@@ -13,6 +13,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Main from './src/screens/main/main';
 import Scanner from './src/screens/scanner/scanner';
+import Logs from './src/screens/logs/logs';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,11 @@ const App = () => {
         <Stack.Screen
           name="Scanner"
           component={Scanner}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Logs"
+          component={Logs}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
