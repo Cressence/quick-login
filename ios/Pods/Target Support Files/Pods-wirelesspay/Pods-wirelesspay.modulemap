@@ -1,0 +1,6 @@
+module Pods_wirelesspay {
+  umbrella header "Pods-wirelesspay-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -216,11 +216,12 @@ State of a component in react is a JavaScript object which contains data of that
 
 Props of a component in react is a JavaScript object containing data which is passed to the compoenent. In our above example, we currently have a cold cup of dark coffee. In order to have a hot cup of sweet Cafe Au Lait (coffee with milk), we will add 3 cubes of sugar, add more hot water or some heat and finally some milk. In this case, we have achieved our desired output. The sugar, heat (or extra hot water) and milk are passed to our cup of coffee in order to change the taste and look. They make up the props of the cup of coffee.
 
-[Add diagram of state and props illustration] 
 
 **More:** Visit the following links to know more about <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">States</a> and <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">Props</a>
 
 <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">Hooks</a> are added in React 16.8, to enable us use states without using class components. Going back to our appication, we see that in our src/main.js file, we import our **setState** from react and then set an initial value of our state. 
+
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/code%20explanation.png" height="250" title="SDK path">
 
  (1) We import useState from react
 
@@ -233,6 +234,8 @@ Props of a component in react is a JavaScript object containing data which is pa
  (5) We update the state of our component using ```setCode``` using the value the user is typing.
 
 After the employee types the unique Id, we will validate the code to make sure the user enters an Id and then move to the next component passign it the employee Id.
+
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/navigation.png" height="300" title="SDK path">
 
 (1) We call the ```movetoScanner``` function when the button is clicked
 
