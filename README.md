@@ -4,7 +4,7 @@ We will be building a mobile application which enables employees check in and ou
 
 We will be using react-Native for the following reasons:
 * Since it is based on JavaScript, we do not need to learn a whole new language in order to use it
-* It is easy to incorporate third-party libraries and connect to APIs
+* It is easy to incorporate third-party libraries
 
 This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a>.
 
