@@ -6,7 +6,7 @@ We will be using react-Native for the following reasons:
 * Since it is based on JavaScript, we do not need to learn a whole new language in order to use it
 * It is easy to incoporate third-party libraries and connect to APIs
 
-This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a> and <a href="https://github.com/react-native-async-storage/async-storage" target="_blank">AsyncStorage</a>
+This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a> and also how to make http requests in react-native.
 
 ## The App
 Before we dive into building the app, let us go through a the flow of the application. 
@@ -118,7 +118,7 @@ You will see this screen after successful project setup
 
 <img src="https://raw.githubusercontent.com/Cressence/single-files/main/success-screen.png" height="300" title="SDK path">
 
-In, this tutorial, we will be using ```useState, useEffect``` to manage data in our application and we will be using JavaScript's ```Fetch API```to make http requests to our test server and log the user in.
+In, this tutorial, we will be using ```useState, useEffect``` to manage and display data in our application and we will be using JavaScript's ```Fetch API```to make http requests to our test server and log the user in.
 
 
 ## Getting Hands Dirty
@@ -182,6 +182,12 @@ import styles from './main.style';
 
 const Main = ({navigation}) => {
   const [code, setCode] = useState('');
+
+  const movetoScanner = () => {
+    if (code.length > 0) {
+      navigation.navigate('Scanner', {userCode: code});
+    }
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Great Crop Limited</Text>
@@ -192,7 +198,7 @@ const Main = ({navigation}) => {
       />
       <TouchableOpacity
         style={styles.payBtn}
-        onPress={() => navigation.navigate('Scanner', {userCode: code})}>
+        onPress={movetoScanner}>
         <Text>Pay With MTN Mobile Money</Text>
       </TouchableOpacity>
     </View>
@@ -202,3 +208,32 @@ const Main = ({navigation}) => {
 export default Main;
 ```
 Notice the use of ```useState``` in the file. Let's get more into it.
+
+Every application has data which is displayed to the user and it changes from time to time depending on user action on that application. In React, we have two major ways of managing data i.e passing data from one component to another and changing data within a component. So we have **Props** (which is short for properties) and **States**. First, we must know they are both JavaScript objects and they both affect what is displayed in our app so it gets alot of beginners confused. 
+
+State of a component in react is a JavaScript object which contains data of that component, this data can be changed within the component by user action. Forexample, imagine you have a hot cup of dark coffee with no sugar. At that very moment, the hot water and dark coffee make up the state of that cup of coffee. So if we let it cool for some time, it becomes cold. So far we have updated our breverage from a hot cup of dark coffee to a cold cup of dark coffee. Nothing has been added into our cup. So, the coffee and hot water make up the state of the cup of cofee.
+
+Props of a component in react is a JavaScript object containing data which is passed to the compoenent. In our above example, we currently have a cold cup of dark coffee. In order to have a hot cup of sweet Cafe Au Lait (coffee with milk), we will add 3 cubes of sugar, add more hot water or some heat and finally some milk. In this case, we have achieved our desired output. The sugar, heat (or extra hot water) and milk are passed to our cup of coffee in order to change the taste and look. They make up the props of the cup of coffee.
+
+[Add diagram of state and props illustration] 
+
+**More:** Visit the following links to know more about <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">States</a> and <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">Props</a>
+
+<a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">Hooks</a> are added in React 16.8, to enable us use states without using class components. Going back to our appication, we see that in our src/main.js file, we import our **setState** from react and then set an initial value of our state. 
+
+ (1) We import useState from react
+
+ (2) We create a variable ```code``` which will store the value of the employee code when the user types the code.
+
+ (3) We create a fucntion ```setCode``` which will update the value of code in (2) as the user will be typing.
+
+ (4) We set an initial value for out state ```code``` in (2) above
+
+ (5) We update the state of our component using ```setCode``` using the value the user is typing.
+
+After the employee types the unique Id, we will validate the code to make sure the user enters an Id and then move to the next component passign it the employee Id.
+
+(1) We call the ```movetoScanner``` function when the button is clicked
+
+(2) We check that the user has entered some data at the moment he clicks the login button.
+(3) we navigate to the scanner screen passing it the employee Id as ```userCode```. The Scanner component receives the employee Id as a prop.
