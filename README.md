@@ -6,7 +6,7 @@ We will be using react-Native for the following reasons:
 * Since it is based on JavaScript, we do not need to learn a whole new language in order to use it
 * It is easy to incoporate third-party libraries and connect to APIs
 
-This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a> and also how to make http requests in react-native.
+This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a>.
 
 ## The App
 Before we dive into building the app, let us go through a the flow of the application. 
@@ -34,7 +34,8 @@ We will be working with:
 * Node v10.22.1
 * npm v6.14.6
 * React-Native v0.63.3
-
+* React-navigation v5.7.6
+* React-native-qrcode-scanner v1.4.1
 
 
 
@@ -116,9 +117,9 @@ Incase you want to install the starter project,  clone repository https://github
 
 You will see this screen after successful project setup
 
-<img src="https://raw.githubusercontent.com/Cressence/single-files/main/success-screen.png" height="300" title="SDK path">
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/success-screen.png" height="300" title="React-native bare project">
 
-In, this tutorial, we will be using ```useState, useEffect``` to manage and display data in our application and we will be using JavaScript's ```Fetch API```to make http requests to our test server and log the user in.
+In, this tutorial, we will be using ```useState``` to manage, display and update data in our application.
 
 
 ## Getting Hands Dirty
@@ -236,4 +237,5 @@ After the employee types the unique Id, we will validate the code to make sure t
 (1) We call the ```movetoScanner``` function when the button is clicked
 
 (2) We check that the user has entered some data at the moment he clicks the login button.
+
 (3) we navigate to the scanner screen passing it the employee Id as ```userCode```. The Scanner component receives the employee Id as a prop.
