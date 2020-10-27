@@ -4,7 +4,7 @@ We will be building a mobile application which enables employees check in and ou
 
 We will be using react-Native for the following reasons:
 * Since it is based on JavaScript, we do not need to learn a whole new language in order to use it
-* It is easy to incorporate third-party libraries
+* It is easy to incorporate third-party libraries and connect to APIs
 
 This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a>.
 
@@ -199,7 +199,7 @@ Props of a component in react is a JavaScript object containing data which is pa
 **More:** Visit the following links to know more about <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">States</a> and <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">Props</a>
 
 
-In the src/main/main.js file, add the following
+In the src/screens/main/main.js file, add the following
 ```
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
@@ -217,6 +217,7 @@ const Main = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Great Crop Limited</Text>
+      <Text style={styles.label}>Employee ID:</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => setCode(text)}
@@ -233,7 +234,7 @@ export default Main;
 ```
 
 
-In src/main/main.style.js file, add the following style
+In src/screens/main/main.style.js file, add the following style
 ```
 import {StyleSheet} from 'react-native';
 
@@ -241,35 +242,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'indigo',
+    paddingHorizontal: '18%',
   },
   heading: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 30,
     color: 'white',
-    marginBottom: 15,
+    marginBottom: 30,
+    textAlign: 'center',
   },
   payBtn: {
     backgroundColor: 'white',
     paddingVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '65%',
     borderRadius: 5,
   },
   input: {
-    height: 40,
+    height: 30,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
-    marginBootom: 25,
-    width: '65%',
+    marginBottom: 15,
+    paddingHorizontal: 5,
     color: 'white',
+  },
+  label: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 
 export default styles;
 ```
+
+You should now have this screen
+
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/main-screen.png" height="250" title="Main Screen">
 
 Notice the use of ```useState``` in the file. Let's get more into it.
 
@@ -290,7 +299,7 @@ Notice the use of ```useState``` in the file. Let's get more into it.
 
 After the employee types the unique Id, we will validate the code to make sure the user enters an Id and then move to the next component passing it the employee Id.
 
-<img src="https://raw.githubusercontent.com/Cressence/single-files/main/navigation.png" height="300" title="navigation">
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/navigation.png" height="450" title="navigation">
 
 (1) We call the ```movetoScanner``` function when the button is clicked
 
@@ -301,7 +310,7 @@ After the employee types the unique Id, we will validate the code to make sure t
 
 In the scanner screen, we will receive the ```userCode``` prop. We the use the **react-native-qrcode-scanner** library to get the data from the QR code. Then build an object containing the employee id, name, position, and date for check-in/check-out. We will then send this data to the logs screen using **navigation**. 
 
-Let's get started! In src/scanner/scanner.js file,
+Let's get started! In src/screens/scanner/scanner.js file,
 
 * Make sure to follow every step of the installation procees when installing the package **react-native-qrcode-scanner** https://github.com/moaazsidat/react-native-qrcode-scanner.
 **NB:** If you encounter a white screen or an error after installing this package, install ```react-native-permissions``` in the project by running 
@@ -313,25 +322,27 @@ Next add the following code to use the package in our project
 ```
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import QRCodeScanner from 'react-native-qrcode-scanner'; //Step 1
+import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 
 import styles from './scanner.style';
 
-const Scanner = ({navigation, route}) => { //Step 2
-  const onSuccess = (e) => { //Step 5
+const Scanner = ({navigation, route}) => {
+  const onSuccess = (e) => {
+    const jsonData = JSON.parse(e.data.toString());
+
     navigation.navigate('Logs', {
       user: {
-        id: route.params ? route.params.userCode : 'Guest', // Step 6
-        name: e.data.name,
-        position: e.data.position
-        date: new Date().now(),
+        id: route.params ? route.params.userCode : 'Guest',
+        name: jsonData.name,
+        position: jsonData.position,
+        date: ndate: new Date().toUTCString(),
       },
     });
   };
   return (
-    <QRCodeScanner   // step 3
-      onRead={onSuccess}    //Step 4
+    <QRCodeScanner
+      onRead={onSuccess}
       showMarker={true}
       fadeIn={false}
       flashMode={RNCamera.Constants.FlashMode.auto}
@@ -360,7 +371,7 @@ const Scanner = ({navigation, route}) => { //Step 2
 export default Scanner;
 ```
 
-And in src/scanner/scanner.style.js
+And in src/screens/scanner/scanner.style.js
 
 ```
 import {StyleSheet} from 'react-native';
@@ -403,8 +414,16 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-
 ```
+
+You should be able to see these screens
+
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/scanner-screen.png" height="450" title="navigation">
+
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/permission.png" height="450" title="navigation">
+
+
+
 (1) We import our third party library QRCodeScanner from react-native-qrcode-scanner
 
 (2) We recieve the navigation from App.js and route props from the main.js
@@ -419,30 +438,134 @@ export default styles;
 
 There it is, we have successfully integrated a library in our react-native application.
 
-**Test:** You can use http://goqr.me to generate QR Code with this format ```{name: Jane Doe, position: Marketer}``` and test the appliation
+**Test:** You can use http://goqr.me to generate QR Code with this format ```{"name": "Tommy Jane", "position": "Marketer"}``` and test the appliation
 
-Finally, let us display our employee data
+Finally, let us display our employee data. Enter the code below in src/screens/logs/logs.js
 
 ```
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import {userLogs} from './../../apiHandler/userLogs';
 
 import styles from './logs.style';
 
-const Main = ({route}) => {
+const Logs = ({navigation, route}) => {
+  userLogs.push({
+    id: route.params.user.id,
+    name: route.params.user.name,
+    position: route.params.user.position,
+    date: route.params.user.date,
+    checkin: true,
+  });
+
+  const checkout = () => {
+    userLogs.push({
+      id: route.params.user.id,
+      name: route.params.user.name,
+      position: route.params.user.position,
+      date: new Date().toLocaleString(),
+      checkin: false,
+    });
+    navigation.navigate('Main');
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Id: {route.params.user.id}</Text>
-      <Text>Name: {route.params.user.name}</Text>
-      <Text>Position: {route.params.user.position}</Text>
-      <Text>Check-in Time: {route.params.user.id}</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      <View style={styles.topContainer}>
+        <Text style={styles.heading}>Employee Log</Text>
+        <TouchableOpacity style={styles.checkOutBtn} onPress={checkout}>
+          <Text>Check-out</Text>
+        </TouchableOpacity>
+      </View>
+
+      {userLogs.map((logs, index) => (
+        <View key={index} style={styles.card}>
+          <Text style={styles.textValue}>
+            <Text style={styles.bold}>ID:</Text> <Text>{logs.id}</Text>
+          </Text>
+          <Text style={styles.textValue}>
+            <Text style={styles.bold}>Name:</Text> <Text>{logs.name}</Text>
+          </Text>
+          <Text style={styles.textValue}>
+            <Text style={styles.bold}>Position:</Text>{' '}
+            <Text>{logs.position}</Text>
+          </Text>
+          <Text style={styles.textValue}>
+            {logs.checkin ? (
+              <Text style={styles.greenText}>Check-in: </Text>
+            ) : (
+              <Text style={styles.redText}>Check-out: </Text>
+            )}
+            <Text>{logs.date}</Text>
+          </Text>
+        </View>
+      ))}
+    </ScrollView>
   );
 };
 
-export default Main;
+export default Logs;
+```
+
+And in src/screens/logs/logs.style.js, add the following style
 
 ```
+import {StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: 'indigo',
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+  },
+  heading: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center',
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  textValue: {
+    fontSize: 16,
+    marginVertical: 3,
+  },
+  greenText: {
+    color: 'green',
+    fontWeight: 'bold',
+  },
+  redText: {
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  topContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginVertical: 20,
+  },
+  checkOutBtn: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+});
+
+export default styles;
+```
+
+You should see the logs screen
+
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/logs-screen.png" height="450" title="navigation">
 
 There it is, our complete login application using QR code in react-native.
 
