@@ -3,29 +3,49 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingVertical: 50,
+    paddingHorizontal: 20,
     backgroundColor: 'indigo',
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    marginVertical: 10,
   },
   heading: {
     fontWeight: 'bold',
     fontSize: 20,
     color: 'white',
-    marginBottom: 20,
+    textAlign: 'center',
   },
-  payBtn: {
-    backgroundColor: 'white',
-    paddingVertical: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '65%',
+  bold: {
+    fontWeight: 'bold',
+  },
+  textValue: {
+    fontSize: 16,
+    marginVertical: 3,
+  },
+  greenText: {
+    color: 'green',
+    fontWeight: 'bold',
+  },
+  redText: {
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  topContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginVertical: 20,
+  },
+  checkOutBtn: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
     borderRadius: 5,
-  },
-  input: {
-    height: 40,
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1,
-    marginVertical: 10,
   },
 });
 

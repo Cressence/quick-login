@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Linking} from 'react-native';
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 
 import styles from './scanner.style';
 
-const Scanner = ({navigation}) => {
-  const [data, setData] = useState('');
+const Scanner = ({navigation, route}) => {
   const onSuccess = (e) => {
-    console.log(e.data);
-    setData(e.data);
-    // Linking.openURL(e.data).catch((err) =>
-    //   console.error('An error occured', err),
-    // );
+    const jsonData = JSON.parse(e.data.toString());
+
+    navigation.navigate('Logs', {
+      user: {
+        id: route.params ? route.params.userCode : 'Guest',
+        name: jsonData.name,
+        position: jsonData.position,
+        date: new Date().toLocaleString(),
+      },
+    });
   };
   return (
     <QRCodeScanner
@@ -25,7 +29,7 @@ const Scanner = ({navigation}) => {
       topContent={
         <View style={styles.topContainer}>
           <Text style={styles.centerText}>
-            Scan the code in order to process payment through MTN mobile money
+            Scan the code in order to continue login
           </Text>
         </View>
       }

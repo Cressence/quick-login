@@ -4,30 +4,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'indigo',
+    paddingHorizontal: '18%',
   },
   heading: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 30,
     color: 'white',
-    marginBottom: 15,
+    marginBottom: 30,
+    textAlign: 'center',
   },
   payBtn: {
     backgroundColor: 'white',
     paddingVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '65%',
     borderRadius: 5,
   },
   input: {
-    height: 40,
+    height: 30,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
-    marginBootom: 25,
-    width: '65%',
+    marginBottom: 15,
+    paddingHorizontal: 5,
     color: 'white',
+  },
+  label: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 

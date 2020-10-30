@@ -14,6 +14,7 @@ const Main = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Great Crop Limited</Text>
+      <Text style={styles.label}>Employee ID:</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => setCode(text)}
