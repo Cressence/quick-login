@@ -445,20 +445,20 @@ Finally, let us display our employee data. Enter the code below in src/screens/l
 ```
 import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import {userLogs} from './../../apiHandler/userLogs';
+import {userLogs} from './../../apiHandler/userLogs'; // Step (1)
 
 import styles from './logs.style';
 
-const Logs = ({navigation, route}) => {
+const Logs = ({navigation, route}) => { // Step (2)
   userLogs.push({
     id: route.params.user.id,
     name: route.params.user.name,
     position: route.params.user.position,
     date: route.params.user.date,
-    checkin: true,
+    checkin: true,                      // Step 3
   });
 
-  const checkout = () => {
+  const checkout = () => {    // Step 5
     userLogs.push({
       id: route.params.user.id,
       name: route.params.user.name,
@@ -473,12 +473,12 @@ const Logs = ({navigation, route}) => {
     <ScrollView style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.heading}>Employee Log</Text>
-        <TouchableOpacity style={styles.checkOutBtn} onPress={checkout}>
+        <TouchableOpacity style={styles.checkOutBtn} onPress={checkout}>  // Step 4
           <Text>Check-out</Text>
         </TouchableOpacity>
       </View>
 
-      {userLogs.map((logs, index) => (
+      {userLogs.map((logs, index) => (    // Step 6
         <View key={index} style={styles.card}>
           <Text style={styles.textValue}>
             <Text style={styles.bold}>ID:</Text> <Text>{logs.id}</Text>
@@ -567,7 +567,30 @@ You should see the logs screen
 
 <img src="https://raw.githubusercontent.com/Cressence/single-files/main/logs-screen.png" height="450" title="navigation">
 
+In order to diplsay the logs for an employee check in and check out, we will add a little login to our code. In src/apiHandler/userLogs.js, we declare a variable which will store the user log information. Add this to the file 
+
+```
+export const userLogs = [];
+```
+
+In the Logs.js file, 
+
+(1) We first import the Logs array.
+
+(2) We will add a new item to the logs array whenever the Logs component is opened. 
+
+(3) We add a boolean attribute ```checkin``` to the check-in data and set it to true. So that we know that the user is checking in and to false when he is checking out.
+
+(4) We add a checkout button to call a our checkout function when the user clicks the button.
+
+(5) We will update our userLogs array with the value of the user's information but set the ```checkin``` attribut to false.
+
+(6) We will now loop through the ```userLogs``` array and display the user information using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank">map</a> function.
+
+
 There it is, our complete login application using QR code in react-native.
+
+## More Information
 
 You can checkout the code repository to explore and test the application here: https://github.com/Cressence/quick-login
 
