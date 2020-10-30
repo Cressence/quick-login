@@ -1,10 +1,12 @@
 # Quick Login Application with React-Native
 
-We will be building a mobile application which enables employees check in and out to the office system after scanning a QR code. This tutorial will guide beginners in installing React-Native, working with third party libraries and  the concept of data management using State and Props.
+This tutorial will guide us through building a simple react-native application. Our app will check employees in and out to the office system after scanning a QR code. This tutorial is for beginners. We will cover React-Native CLI installation and creating a new project using the CLI. Finally, we will manage  data in our app using State and props.
 
 We will be using react-Native for the following reasons:
-* Since it is based on JavaScript, we do not need to learn a whole new language in order to use it
-* It is easy to incorporate third-party libraries and connect to APIs
+
+We will be using react-Native for the following reasons:
+* Since it is based on JavaScript, we do not need to learn a whole new language to use it.
+* It is easy to incorporate third-party libraries and connect to APIs.
 
 This tutorial will focus mainly on data management in React-Native using <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank">hooks</a>.
 
