@@ -299,7 +299,7 @@ Notice the use of ```useState``` in the file. Let's get more into it.
 
 After the employee types the unique Id, we will validate the code to make sure the user enters an Id and then move to the next component passing it the employee Id.
 
-<img src="https://raw.githubusercontent.com/Cressence/single-files/main/navigation.png" height="450" title="navigation">
+<img src="https://raw.githubusercontent.com/Cressence/single-files/main/main%20code.png" height="450" title="navigation">
 
 (1) We call the ```movetoScanner``` function when the button is clicked
 
